@@ -1,0 +1,10 @@
+(function(View, EJS) {
+  var ejs = new EJS({
+      text: '{{content}}',
+      name: '{{id}}'
+    });
+    
+  View.preload('{{id}}', function(data, helpers) {
+    return ejs.render.call(ejs, data, helpers);
+  });
+})($.View, $.EJS);

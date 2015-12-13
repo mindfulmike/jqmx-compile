@@ -1,0 +1,29 @@
+{
+  "name": "jqmx-compile",
+  "version": "0.0.1",
+  "description": "Gulp task for pre-compiling ejs templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mindfulmike/jqmx-compile.git"
+  },
+  "keywords": [
+    "jquerymx",
+    "ejs",
+    "views",
+    "compile"
+  ],
+  "author": "Mike P.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mindfulmike/jqmx-compile/issues"
+  },
+  "homepage": "https://github.com/mindfulmike/jqmx-compile",
+  "dependencies": {
+    "through2": "^2.0.0",
+    "handlebars": "^4.0.5"
+  }
+}
