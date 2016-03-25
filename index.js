@@ -5,7 +5,6 @@ var fs = require('fs'),
   HBars = require('handlebars'),
   Path = require('path'),
   defaultOptions = {
-    basePath: './',
     out: './'
   },
   template;
@@ -15,20 +14,13 @@ function toId(src) {
 }
 
 fs.readFile(format('%s/lib/template.js.stache', __dirname), function(err, content) {
-  if (err) {
-    throw err;
-  }
-
   content = content.toString();
-
   template = HBars.compile(content, {
-    noEscape: true
+    noEscape: false
   });
 });
 
 module.exports = function(options) {
-  options = options || defaultOptions,
-  options = extend(defaultOptions, options);
 
   return through.obj(function(file, encoding, callback) {
     if (file.isNull()) {
@@ -36,8 +28,8 @@ module.exports = function(options) {
     }
 
     var content = {
-      id: toId(Path.relative(format('%s/%s',process.cwd(), options.basePath), file.history[0])),
-      content: file.contents.toString('ascii').replace(/(\r|\t|\n)/g, '')
+      id: toId(Path.relative(format('%s/src/lib', process.cwd()), file.history[0])),
+      content: file.contents.toString('ascii').replace(/(\r|\t|\n)/g,'')
     };
 
     file.contents = new Buffer(template(content));

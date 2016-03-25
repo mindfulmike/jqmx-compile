@@ -1,6 +1,14 @@
 (function(View, EJS) {
+  function htmlDecode(input){
+    if (!input) {
+      return '';
+    }
+    var doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
+  }
+  
   var ejs = new EJS({
-      text: '{{content}}',
+      text: htmlDecode('{{content}}'),
       name: '{{id}}'
     });
     
